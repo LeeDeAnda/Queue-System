@@ -187,6 +187,7 @@ export default {
 </script>
 
 <style>
+  /* example css comment */
   * {
     box-sizing: border-box;
   }
