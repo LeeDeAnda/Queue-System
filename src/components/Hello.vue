@@ -35,7 +35,7 @@
         <tr>
           <th>Time Arrived</th>
           <th>Student Name</th>
-          <th>Subject</th>
+          <!--  <th>Subject</th>  -->
           <th>Course</th>
           <th>Status</th>
           <th>Action</th>
@@ -45,7 +45,7 @@
         <tr v-for="student in studentsInQueue">
           <td>{{student.timestamp.format('h:mm:ssA')}}</td>
           <td>{{student.name}}</td>
-          <td>{{student.subject}}</td>
+          <!--  <td>{{student.subject}}</td>  -->
           <td>{{student.course}}</td>
           <td>{{student.status}}</td>
           <td class="student-actions">
@@ -179,7 +179,7 @@ export default {
         return 'No last name entered'
       }
       if(this.studentPerm.length !== 7) {
-        return 'Perm must be 7 digits'
+        return 'Please enter a valid perm'
       }
       if(this.selectedSubject.length <= 1) {
         return 'No subject selected'
