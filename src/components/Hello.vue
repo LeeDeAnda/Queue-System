@@ -163,6 +163,8 @@ export default {
       this.studentPerm = ''
       this.selectedCourse = ''
       this.selectedSubject = ''
+
+      this.saveDataToStorage()
     },
     validateInput() {
       this.errorMessage = ''
@@ -206,7 +208,31 @@ export default {
       completedStudent.totalTime = completedStudent.endingTimestamp.diff(completedStudent.timestamp, 'minutes')
       // add them to studentsCompleted array
       this.studentsCompleted.push(completedStudent)
+      this.saveDataToStorage()
+    },
+    loadDataFromStorage() {
+      this.studentsInQueue = JSON.parse(window.localStorage.getItem('studentsInQueue'))
+      _.forEach(this.studentsInQueue, (student) => {
+        student.timestamp = new moment(student.timestamp)
+      })
+      var completed = window.localStorage.getItem('studentsCompleted')
+      if(completed !== null) {
+        this.studentsCompleted = JSON.parse(completed)
+        _.forEach(this.studentsCompleted, (student) => {
+          student.timestamp = new moment(student.timestamp)
+          student.endingTimestamp = new moment(student.endingTimestamp)
+        })
+      } else {
+        this.studentsCompleted = []
+      }
+    },
+    saveDataToStorage() {
+      window.localStorage.setItem('studentsInQueue', JSON.stringify(this.studentsInQueue))
+      window.localStorage.setItem('studentsCompleted', JSON.stringify(this.studentsCompleted))
     }
+  },
+  mounted() {
+    this.loadDataFromStorage()
   }
 }
 </script>
