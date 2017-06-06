@@ -62,6 +62,28 @@
       </tbody>
     </table>
 
+    <h2>Students completed:</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Time Arrived</th>
+          <th>Student Name</th>
+          <th>Subject</th>
+          <th>Course</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="student in studentsCompleted">
+          <td>{{student.timestamp.format('h:mm:ssA')}}</td>
+          <td>{{student.name}}</td>
+          <td>{{student.subject}}</td>
+          <td>{{student.course}}</td>
+          <td>{{student.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+
   </div>
 </template>
 
