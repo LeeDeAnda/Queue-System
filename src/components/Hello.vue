@@ -217,7 +217,7 @@ export default {
     loadDataFromStorage() {
       // load queued students
       var inqueue = window.localStorage.getItem('studentsInQueue')
-      if(inqueue!== null) {
+      if(inqueue !== null) {
         this.studentsInQueue = JSON.parse(window.localStorage.getItem('studentsInQueue'))
         _.forEach(this.studentsInQueue, (student) => {
           student.timestamp = new moment(student.timestamp)
