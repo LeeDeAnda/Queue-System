@@ -67,6 +67,8 @@
       <thead>
         <tr>
           <th>Time Arrived</th>
+          <th>Time Ended</th>
+          <th>Duration</th>
           <th>Student Name</th>
           <th>Subject</th>
           <th>Course</th>
@@ -75,7 +77,9 @@
       </thead>
       <tbody>
         <tr v-for="student in studentsCompleted">
-          <td>{{student.timestamp.format('h:mm:ssA')}}</td>
+          <td>{{student.timestamp.format('h:mm:ss A')}}</td>
+          <td>{{student.endingTimestamp.format('h:mm:ss A')}}</td>
+          <td>{{student.totalTime}} minutes</td>
           <td>{{student.name}}</td>
           <td>{{student.subject}}</td>
           <td>{{student.course}}</td>
