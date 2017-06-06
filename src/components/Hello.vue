@@ -67,6 +67,7 @@
 
 <script>
 import moment from 'moment'
+import _ from 'lodash'
 export default {
   name: 'hello',
   data () {
@@ -79,7 +80,6 @@ export default {
       selectedSubject: '',
       selectedCourse: '',
       studentsInQueue: [],
-      studentsInProgress: [],
       studentsCompleted: [],
       subjects: ['Math', 'Physics', 'PStat', "Other"],
       courses: {
@@ -111,9 +111,6 @@ export default {
     sortedStudentsInQueue() {
       // return the students in queue, except sorted by students that arent studying
     }
-  },
-  watch: {
-    'studentPerm': 'resetError'
   },
   methods: {
     enterQueue() {
@@ -178,9 +175,15 @@ export default {
     },
     statusDone(student) {
       student.status = 'done'
-    },
-    resetError() {
-      this.errors = false
+      // loop through students and find the matching object
+      var completedStudent = _.find(this.studentsInQueue, {perm: student.perm})
+      // remove them from studentsInQueue array
+      _.remove(this.studentsInQueue, {perm: completedStudent.perm})
+      // add additional ending timestamp and duration
+      completedStudent.endingTimestamp = new moment()
+      completedStudent.totalTime = completedStudent.endingTimestamp.diff(completedStudent.timestamp, 'minutes')
+      // add them to studentsCompleted array
+      this.studentsCompleted.push(completedStudent)
     }
   }
 }
