@@ -215,13 +215,18 @@ export default {
       this.saveDataToStorage()
     },
     loadDataFromStorage() {
-    var inqueue = window.localStorage.getItem('studentsInQueue')
-    if(inqueue!== null){
-      this.studentsInQueue = JSON.parse(window.localStorage.getItem('studentsInQueue'))
-          _.forEach(this.studentsInQueue, (student) => {
-            student.timestamp = new moment(student.timestamp)
-          })} else {this.studentsInQueue = []}
+      // load queued students
+      var inqueue = window.localStorage.getItem('studentsInQueue')
+      if(inqueue!== null) {
+        this.studentsInQueue = JSON.parse(window.localStorage.getItem('studentsInQueue'))
+        _.forEach(this.studentsInQueue, (student) => {
+          student.timestamp = new moment(student.timestamp)
+        })
+      } else {
+        this.studentsInQueue = []
+      }
 
+      // load completed students
       var completed = window.localStorage.getItem('studentsCompleted')
       if(completed !== null) {
         this.studentsCompleted = JSON.parse(completed)
