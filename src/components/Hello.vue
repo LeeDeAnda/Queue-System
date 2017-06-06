@@ -33,7 +33,7 @@
       <thead>
         <tr>
           <th>Time Arrived</th>
-          <th>Student's Name</th>
+          <th>Student Name</th>
           <th>Subject</th>
           <th>Course</th>
           <th>Status</th>
