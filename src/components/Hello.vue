@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <div class="student-input">
+      <!-- this is a comment -->
       <h4>Sign in to get started</h4>
       <p>Enter your first name</p>
       <input type="text" placeholder="First Name" v-model="studentName" />
