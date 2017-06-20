@@ -74,8 +74,10 @@
           <th>Time Ended</th>
           <th>Duration</th>
           <th>Student Name</th>
+          <th>Perm</th>
           <th>Subject</th>
           <th>Course</th>
+          <th>Tutor</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -85,8 +87,10 @@
           <td>{{student.endingTimestamp.format('h:mm:ss A')}}</td>
           <td>{{student.totalTime}} minutes</td>
           <td>{{student.name}}</td>
+          <td>{{student.perm}}</td>
           <td>{{student.subject}}</td>
           <td>{{student.course}}</td>
+          <td>{{student.tutor}}</td>
           <td>{{student.status}}</td>
         </tr>
       </tbody>
