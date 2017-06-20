@@ -50,7 +50,8 @@
           <td>{{student.course}}</td>
           <td>{{student.status}}</td>
           <td>{{student.tutor}}
-            <select v-if="false">
+            <!-- I need to add a conditional statement maybe?     -->
+            <select v-if="">
               <option v-for="tutor in activeTutors">{{tutor.name}}</option>
             </select>
           <td class="student-actions">
@@ -119,17 +120,34 @@ export default {
       },
       activeTutors: [
         {
-          name: 'Lee',
-          subjects: ['Math 23', 'Math 34']
-        },
-        {
-          name: 'Andrew',
-          subjects: ['Math 23', 'Math 34']
+          name: '',
+          subjects: ['Math 3A', 'Math 34']
         },
         {
           name: 'Alex',
-          subjects: ['Math 23', 'Math 34']
+          subjects: ['Math 3A', 'Math 34']
+        },
+        {
+          name: 'Binh',
+          subjects: ['Math 3A', 'Math 34']
+        },
+        {
+          name: 'Damien',
+          subjects: ['Math 3A']
+        },
+        {
+          name: 'Lee',
+          subjects: ['Math 3A']
+        },
+        {
+          name: 'Loren',
+          subjects: ['Math 3A']
+        },
+        {
+          name: 'Vince',
+          subjects: ['Math 3A']
         }
+
       ]
     }
   },
@@ -182,7 +200,7 @@ export default {
         return 'No last name entered'
       }
       if(this.studentPerm.length !== 7) {
-
+        window.alert('Please entera valid perm!');
         return 'Please enter a valid perm #'
 
       }
