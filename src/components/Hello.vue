@@ -38,6 +38,7 @@
           <!--  <th>Subject</th>  -->
           <th>Course</th>
           <th>Status</th>
+          <th>Tutor</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -48,13 +49,15 @@
           <!--  <td>{{student.subject}}</td>  -->
           <td>{{student.course}}</td>
           <td>{{student.status}}</td>
-          <td class="student-actions">
+          <td>{{student.tutor}}
             <select v-if="false">
               <option v-for="tutor in activeTutors">{{tutor.name}}</option>
             </select>
+          <td class="student-actions">
+
             <a href="#" @click.prevent="statusPriority(student)">Priority Course</a>
             <a href="#" @click.prevent="statusWaiting(student)">Waiting</a>
-            <a href="#" @click.prevent="statusTutor(student)">Being Tutored</a>
+            <a href="#" @click.prevent="statusTutor(student)">Working with</a>
             <a href="#" @click.prevent="statusStudying(student)">Studying</a>
             <a href="#" @click.prevent="statusDone(student)">Done</a>
           </td>
@@ -179,7 +182,9 @@ export default {
         return 'No last name entered'
       }
       if(this.studentPerm.length !== 7) {
-        return 'Please enter a valid perm'
+
+        return 'Please enter a valid perm #'
+
       }
       if(this.selectedSubject.length <= 1) {
         return 'No subject selected'
@@ -196,7 +201,8 @@ export default {
       student.status = 'studying'
     },
     statusTutor(student) {
-      student.status = 'being tutored'
+      student.status = 'Working with'
+
     },
     statusWaiting(student) {
       student.status = 'Waiting'
