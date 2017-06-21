@@ -83,7 +83,7 @@
       </thead>
       <tbody>
         <tr v-for="student in studentsCompleted">
-          <td>{{student.timestamp.format('h:mm:ss A')}}</td>
+          <td>{{student.timestamp.format('MMM D,  h:mm A')}}</td>
           <td>{{student.endingTimestamp.format('h:mm:ss A')}}</td>
           <td>{{student.totalTime}} minutes</td>
           <td>{{student.name}}</td>
