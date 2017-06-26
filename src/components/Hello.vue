@@ -74,6 +74,7 @@
           <th>Time Ended</th>
           <th>Duration</th>
           <th>Student Name</th>
+          <th>Last</th>
           <th>Perm</th>
           <th>Subject</th>
           <th>Course</th>
@@ -87,6 +88,7 @@
           <td>{{student.endingTimestamp.format('h:mm:ss A')}}</td>
           <td>{{student.totalTime}} minutes</td>
           <td>{{student.name}}</td>
+          <td>{{student.lastname}}</td>
           <td>{{student.perm}}</td>
           <td>{{student.subject}}</td>
           <td>{{student.course}}</td>
@@ -181,6 +183,8 @@ export default {
         perm: this.studentPerm,
         subject: this.selectedSubject,
         course: this.selectedCourse,
+        // tyring to create appropriate variable???
+        tutor: this.activeTutors,
         timestamp: new moment(),
         status: 'Waiting'
       }
