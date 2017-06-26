@@ -52,7 +52,8 @@
           <td>{{student.tutorName}}
             <!-- I need to add a conditional statement maybe?  I want to track "tutorName"
                   when "priority course" or "working with" is selected-->
-            <select v-if="">
+             <!--  <select v-if="statusTutor">  -->
+            <select v-model="tutorName">
               <option v-for="tutor in activeTutors">{{tutor.tutorName}}</option>
             </select>
           <td class="student-actions">
@@ -185,6 +186,7 @@ export default {
         subject: this.selectedSubject,
         course: this.selectedCourse,
         // tyring to create appropriate variable???
+        //tutor: this.activeTutors,
         tutor: this.tutorName,
         //
         timestamp: new moment(),
