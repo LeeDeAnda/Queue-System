@@ -49,10 +49,11 @@
           <!--  <td>{{student.subject}}</td>  -->
           <td>{{student.course}}</td>
           <td>{{student.status}}</td>
-          <td>{{student.tutor}}
-            <!-- I need to add a conditional statement maybe?     -->
+          <td>{{student.tutorName}}
+            <!-- I need to add a conditional statement maybe?  I want to track "tutorName"
+                  when "priority course" or "working with" is selected-->
             <select v-if="">
-              <option v-for="tutor in activeTutors">{{tutor.name}}</option>
+              <option v-for="tutor in activeTutors">{{tutor.tutorName}}</option>
             </select>
           <td class="student-actions">
 
@@ -92,7 +93,7 @@
           <td>{{student.perm}}</td>
           <td>{{student.subject}}</td>
           <td>{{student.course}}</td>
-          <td>{{student.tutor}}</td>
+          <td>{{student.tutorName}}</td>
           <td>{{student.status}}</td>
         </tr>
       </tbody>
@@ -126,31 +127,31 @@ export default {
       },
       activeTutors: [
         {
-          name: '',
+          tutorName: '',
           subjects: ['Math 3A', 'Math 34']
         },
         {
-          name: 'Alex',
+          tutorName: 'Alex',
           subjects: ['Math 3A', 'Math 34']
         },
         {
-          name: 'Binh',
+          tutorName: 'Binh',
           subjects: ['Math 3A', 'Math 34']
         },
         {
-          name: 'Damien',
+          tutorName: 'Damien',
           subjects: ['Math 3A']
         },
         {
-          name: 'Lee',
+          tutorName: 'Lee',
           subjects: ['Math 3A']
         },
         {
-          name: 'Loren',
+          tutorName: 'Loren',
           subjects: ['Math 3A']
         },
         {
-          name: 'Vince',
+          tutorName: 'Vince',
           subjects: ['Math 3A']
         }
 
@@ -184,7 +185,8 @@ export default {
         subject: this.selectedSubject,
         course: this.selectedCourse,
         // tyring to create appropriate variable???
-        tutor: this.activeTutors,
+        tutor: this.tutorName,
+        //
         timestamp: new moment(),
         status: 'Waiting'
       }
