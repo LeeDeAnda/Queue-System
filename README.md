@@ -1,9 +1,6 @@
-# andrewtest
+# queue-system
 
 > A Vue.js project
-
-"cd" to change directory, i.e. "cd C:\andrewtest"
-or "cd .." to go up a dir, or "cd ..\.."
 
 ## Build Setup
 
