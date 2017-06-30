@@ -38,7 +38,7 @@
           <!--  <th>Subject</th>  -->
           <th>Course</th>
           <th>Status</th>
-          <th>Tutor</th>
+          <th style="width: 20%">Tutor</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -49,15 +49,18 @@
           <!--  <td>{{student.subject}}</td>  -->
           <td>{{student.course}}</td>
           <td>{{student.status}}</td>
-          <td>{{student.tutorName}}
-            <!-- I need to add a conditional statement maybe?  I want to track "tutorName"
-                  when "priority course" or "working with" is selected-->
-             <!--  <select v-if="statusTutor">  -->
-            <select v-model="tutorName">
-              <option v-for="tutor in activeTutors">{{tutor.tutorName}}</option>
-            </select>
+          <td>
+            <template v-if="student.editingTutor">
+              <select v-model="student.tutor">
+                <option v-for="tutor in activeTutors">{{tutor.tutorName}}</option>
+              </select>
+              <a href="#" @click.prevent="closeTutorSelection(student)">Close</a>
+            </template>
+            <template v-else>
+              {{student.tutor}}
+            </template>
+          </td> <!-- don't forget to always close your html tags: <td></td> -->
           <td class="student-actions">
-
             <a href="#" @click.prevent="statusPriority(student)">Priority Course</a>
             <a href="#" @click.prevent="statusWaiting(student)">Waiting</a>
             <a href="#" @click.prevent="statusTutor(student)">Working with</a>
@@ -94,7 +97,7 @@
           <td>{{student.perm}}</td>
           <td>{{student.subject}}</td>
           <td>{{student.course}}</td>
-          <td>{{student.tutorName}}</td>
+          <td>{{student.tutor}}</td>
           <td>{{student.status}}</td>
         </tr>
       </tbody>
@@ -129,7 +132,7 @@ export default {
       activeTutors: [
         {
           tutorName: '',
-          subjects: ['Math 3A', 'Math 34']
+          subjects: []
         },
         {
           tutorName: 'Alex',
@@ -185,10 +188,11 @@ export default {
         perm: this.studentPerm,
         subject: this.selectedSubject,
         course: this.selectedCourse,
-        // tyring to create appropriate variable???
-        //tutor: this.activeTutors,
-        tutor: this.tutorName,
-        //
+        // we initialize tutor as an empty string, to be set later
+        tutor: '',
+        // we also want a boolean to indicate whether we are editing the tutor
+        // so we can update the UI accordingly (show dropdown)
+        editingTutor: false,
         timestamp: new moment(),
         status: 'Waiting'
       }
@@ -226,13 +230,19 @@ export default {
     },
     statusPriority(student) {
       student.status = 'Priority Course'
+      // set to true to toggle dropdown visibility
+      student.editingTutor = true
     },
     statusStudying(student) {
       student.status = 'studying'
     },
     statusTutor(student) {
       student.status = 'Working with'
-
+      // set to true to toggle dropdown visibility
+      student.editingTutor = true
+    },
+    closeTutorSelection(student) {
+      student.editingTutor = false
     },
     statusWaiting(student) {
       student.status = 'Waiting'
