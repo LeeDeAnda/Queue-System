@@ -21,6 +21,13 @@
         </select>
       </div>
 
+      <div v-if="selectedCourse">
+        <p>Select Reason</p>
+        <select v-model="selectedReason">
+          <option v-for="reason in reasons">{{reason}}</option>
+        </select>
+      </div>
+
       <div>
         <button @click="enterQueue" class="queueButton">Enter Queue</button>
         <p v-if="errors" class="thisisawarning">
@@ -37,9 +44,11 @@
           <th>Student Name</th>
           <!--  <th>Subject</th>  -->
           <th>Course</th>
+
           <th>Status</th>
           <th style="width: 20%">Tutor</th>
           <th>Action</th>
+          <th>Reason</th>
         </tr>
       </thead>
       <tbody>
@@ -48,6 +57,7 @@
           <td>{{student.name}}</td>
           <!--  <td>{{student.subject}}</td>  -->
           <td>{{student.course}}</td>
+
           <td>{{student.status}}</td>
           <td>
             <template v-if="student.editingTutor">
@@ -67,6 +77,7 @@
             <a href="#" @click.prevent="statusStudying(student)">Studying</a>
             <a href="#" @click.prevent="statusDone(student)">Done</a>
           </td>
+          <td>{{student.reason}}</td>
         </tr>
       </tbody>
     </table>
@@ -83,6 +94,7 @@
           <th>Perm</th>
           <th>Subject</th>
           <th>Course</th>
+          <th>Reason</th>
           <th>Tutor</th>
           <th>Status</th>
         </tr>
@@ -97,6 +109,7 @@
           <td>{{student.perm}}</td>
           <td>{{student.subject}}</td>
           <td>{{student.course}}</td>
+          <td>{{student.reason}}</td>
           <td>{{student.tutor}}</td>
           <td>{{student.status}}</td>
         </tr>
@@ -120,6 +133,7 @@ export default {
       studentPerm: '',
       selectedSubject: '',
       selectedCourse: '',
+      selectedReason: '',
       studentsInQueue: [],
       studentsCompleted: [],
       subjects: ['Math', 'Physics', 'PStat', "Other"],
@@ -129,6 +143,7 @@ export default {
         'PStat': ['PStat 5A', 'PStat 109'],
         'Other': ['ECE 10A', 'ECE 10B', 'ECE 10C', 'Engr 3', 'Astro 1'],
       },
+      reasons:['1 - Need help getting started.','2 - Started but got stuck.', '3 - Can do others but not this one', '4 - I did problem already and just need someone to check my answer', '5 - I want to learn concepts better, no specific question.', '6 - Other'],
       activeTutors: [
         {
           tutorName: '',
@@ -188,6 +203,7 @@ export default {
         perm: this.studentPerm,
         subject: this.selectedSubject,
         course: this.selectedCourse,
+        reason: this.selectedReason,
         // we initialize tutor as an empty string, to be set later
         tutor: '',
         // we also want a boolean to indicate whether we are editing the tutor
@@ -204,6 +220,7 @@ export default {
       this.studentPerm = ''
       this.selectedCourse = ''
       this.selectedSubject = ''
+      this.selectedReason =''
 
       this.saveDataToStorage()
     },
