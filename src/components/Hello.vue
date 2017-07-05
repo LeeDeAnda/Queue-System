@@ -203,7 +203,9 @@ export default {
         perm: this.studentPerm,
         subject: this.selectedSubject,
         course: this.selectedCourse,
-        reason: this.selectedReason,
+        //.substring(start location, end location)
+        reason: this.selectedReason.substring(0,1),
+
         // we initialize tutor as an empty string, to be set later
         tutor: '',
         // we also want a boolean to indicate whether we are editing the tutor
@@ -251,7 +253,8 @@ export default {
       student.editingTutor = true
     },
     statusStudying(student) {
-      student.status = 'studying'
+      student.status = 'Studying'
+      student.editingTutor = true
     },
     statusTutor(student) {
       student.status = 'Working with'
