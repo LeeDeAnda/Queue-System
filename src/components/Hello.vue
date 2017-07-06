@@ -53,7 +53,7 @@
       </thead>
       <tbody>
         <tr v-for="student in studentsInQueue">
-          <td>{{student.timestamp.format('h:mm:ssA')}}</td>
+          <td>{{student.timestamp.format('h:mm:ss A')}}</td>
           <td>{{student.name}}</td>
           <!--  <td>{{student.subject}}</td>  -->
           <td>{{student.course}}</td>
@@ -96,6 +96,7 @@
           <th>Course</th>
           <th>Reason</th>
           <th>Tutor</th>
+          <th>Priority Course</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -111,6 +112,7 @@
           <td>{{student.course}}</td>
           <td>{{student.reason}}</td>
           <td>{{student.tutor}}</td>
+          <td>{{student.priority}}</td>
           <td>{{student.status}}</td>
         </tr>
       </tbody>
@@ -143,7 +145,7 @@ export default {
         'PStat': ['PStat 5A', 'PStat 109'],
         'Other': ['ECE 10A', 'ECE 10B', 'ECE 10C', 'Engr 3', 'Astro 1'],
       },
-      reasons:['1 - Need help getting started.','2 - Started but got stuck.', '3 - Can do others but not this one', '4 - I did problem already and just need someone to check my answer', '5 - I want to learn concepts better, no specific question.', '6 - Other'],
+      reasons:['1 - Need help getting started.','2 - Started but got stuck.', '3 - Can do others but not this one.', '4 - I did problem already and just need someone to check my answer.', '5 - I want to learn concepts better, no specific question.', '6 - I want to review for a test.', '7 - I want to work with others in my class.', '8 - Other'],
       activeTutors: [
         {
           tutorName: '',
@@ -212,7 +214,8 @@ export default {
         // so we can update the UI accordingly (show dropdown)
         editingTutor: false,
         timestamp: new moment(),
-        status: 'Waiting'
+        status: 'Waiting',
+        priority: ''
       }
       // push new object into studentsInQueue array
       this.studentsInQueue.push(student)
@@ -251,6 +254,7 @@ export default {
       student.status = 'Priority Course'
       // set to true to toggle dropdown visibility
       student.editingTutor = true
+      student.priority = 'Priority Course'
     },
     statusStudying(student) {
       student.status = 'Studying'
