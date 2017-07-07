@@ -242,11 +242,14 @@ export default {
         return 'Please enter a valid perm #'
 
       }
-      if(this.selectedSubject.length <= 1) {
+      if(this.selectedSubject <= 1) {
         return 'No subject selected'
       }
       if(this.selectedCourse <= 1) {
         return 'No course selected'
+      }
+      if(this.selectedReason <= 1){
+        return 'Please select a reason for this visit.'
       }
       return true
     },
