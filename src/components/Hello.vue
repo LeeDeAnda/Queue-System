@@ -115,9 +115,9 @@
           <td>
             <template v-if="student.priority">
               <a>Priority Course</a>
-
           </template>
-          <!--  <td>{{student.priority}}</td>  -->
+          </td>
+          <!-- keep if string <td>{{student.priority}}</td>  -->
           <td>{{student.status}}</td>
         </tr>
       </tbody>
@@ -262,7 +262,7 @@ export default {
       student.status = 'Priority Course'
       // set to true to toggle dropdown visibility
       student.editingTutor = true
-    //  student.priority = 'Priority Course'
+    // keep if string // student.priority = 'Priority Course'
       student.priority = true
     },
     statusStudying(student) {
