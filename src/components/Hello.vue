@@ -112,7 +112,12 @@
           <td>{{student.course}}</td>
           <td>{{student.reason}}</td>
           <td>{{student.tutor}}</td>
-          <td>{{student.priority}}</td>
+          <td>
+            <template v-if="student.priority">
+              <a>Priority Course</a>
+
+          </template>
+          <!--  <td>{{student.priority}}</td>  -->
           <td>{{student.status}}</td>
         </tr>
       </tbody>
@@ -257,7 +262,8 @@ export default {
       student.status = 'Priority Course'
       // set to true to toggle dropdown visibility
       student.editingTutor = true
-      student.priority = 'Priority Course'
+    //  student.priority = 'Priority Course'
+      student.priority = true
     },
     statusStudying(student) {
       student.status = 'Studying'
