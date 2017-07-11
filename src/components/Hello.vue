@@ -44,7 +44,6 @@
           <th>Student Name</th>
           <!--  <th>Subject</th>  -->
           <th>Course</th>
-
           <th>Status</th>
           <th style="width: 20%">Tutor</th>
           <th>Action</th>
@@ -56,7 +55,7 @@
           <td>{{student.timestamp.format('h:mm:ss A')}}</td>
           <td>{{student.name}}</td>
           <!--  <td>{{student.subject}}</td>  -->
-          <td>{{student.course}}</td>
+          <td v-bind:class="{mathColor: selectedSubject =='Math', physicsColor: selectedSubject == 'Physics'}">{{student.course}}</td>
 
           <td>{{student.status}}</td>
           <td>
@@ -332,6 +331,12 @@ export default {
   /* example css comment */
   * {
     box-sizing: border-box;
+  }
+  .mathColor{
+    background-color: #3399FF;
+  }
+  .physicsColor{
+    background-color: orange;
   }
   .queueButton {
     margin-top: 20px;
