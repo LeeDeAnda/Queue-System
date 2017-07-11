@@ -74,7 +74,7 @@
             <a href="#" @click.prevent="statusPriority(student)">Priority Course</a>
             <a href="#" @click.prevent="statusWaiting(student)">Waiting</a>
             <a href="#" @click.prevent="statusTutor(student)">Working with</a>
-            <a href="#" @click.prevent="statusStudying(student)">Studying</a>
+          <!--  <a href="#" @click.prevent="statusStudying(student)">Studying</a>  -->
             <a href="#" @click.prevent="statusDone(student)">Done</a>
           </td>
           <td>{{student.reason}}</td>
@@ -115,7 +115,7 @@
           <td>
             <template v-if="student.priority">
               <a>Priority Course</a>
-          </template>
+            </template>
           </td>
           <!-- keep if string <td>{{student.priority}}</td>  -->
           <td>{{student.status}}</td>
