@@ -371,6 +371,9 @@ export default {
   table {
     width: 100%;
   }
+  tr :nth-of-type(even){
+    background-color: grey;
+  }
   table th {
     text-align: left;
   }
