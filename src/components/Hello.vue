@@ -42,7 +42,7 @@
         <tr>
           <th>Time Arrived</th>
           <th>Student Name</th>
-          <!--  <th>Subject</th>  -->
+          <!--  <th>Subject</th> -->
           <th>Course</th>
           <th>Status</th>
           <th style="width: 20%">Tutor</th>
@@ -54,9 +54,8 @@
         <tr v-for="student in studentsInQueue">
           <td>{{student.timestamp.format('h:mm:ss A')}}</td>
           <td>{{student.name}}</td>
-          <!--  <td>{{student.subject}}</td>  -->
-          <td v-bind:class="{mathColor: selectedSubject =='Math', physicsColor: selectedSubject == 'Physics'}">{{student.course}}</td>
-
+          <td v-bind:class="{mathColor: student.subject =='Math', physicsColor: student.subject == 'Physics', pstatColor: student.subject == 'PStat', otherColor: student.subject == 'Other'}">{{student.course}}</td>
+          <!--<td v-bind:class="{student.subject +'Color'}">{{student.course}}</td> -->
           <td>{{student.status}}</td>
           <td>
             <template v-if="student.editingTutor">
@@ -73,7 +72,7 @@
             <a href="#" @click.prevent="statusPriority(student)">Priority Course</a>
             <a href="#" @click.prevent="statusWaiting(student)">Waiting</a>
             <a href="#" @click.prevent="statusTutor(student)">Working with</a>
-          <!--  <a href="#" @click.prevent="statusStudying(student)">Studying</a>  -->
+          <a href="#" @click.prevent="statusStudying(student)">Studying</a>
             <a href="#" @click.prevent="statusDone(student)">Done</a>
           </td>
           <td>{{student.reason}}</td>
@@ -81,10 +80,10 @@
       </tbody>
     </table>
 
-    <h2>Students completed:</h2>
-    <table>
+    <h2 v-if="studentName =='demo'" v-bind:class="{tableColor: selectedSubject !=='Other'}">Students completed:</h2>
+    <table v-bind:class="{tableColor: selectedSubject !=='Other'}">
       <thead>
-        <tr>
+        <tr v-if="studentLastName =='demo'">
           <th>Time Arrived</th>
           <th>Time Ended</th>
           <th>Duration</th>
@@ -100,13 +99,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="student in studentsCompleted">
+        <tr v-if="studentPerm =='demo'" v-for="student in studentsCompleted">
           <td>{{student.timestamp.format('MMM D,  h:mm A')}}</td>
           <td>{{student.endingTimestamp.format('h:mm:ss A')}}</td>
           <td>{{student.totalTime}} minutes</td>
           <td>{{student.name}}</td>
           <td>{{student.lastname}}</td>
-          <td>{{student.perm}}</td>
+          <td :class="{permColor: selectedSubject =='Other'}">{{student.perm}}</td>
           <td>{{student.subject}}</td>
           <td>{{student.course}}</td>
           <td>{{student.reason}}</td>
@@ -337,6 +336,18 @@ export default {
   }
   .physicsColor{
     background-color: orange;
+  }
+  .pstatColor{
+    background-color: #FF3333;
+  }
+  .otherColor{
+    background-color: #784AFF;
+  }
+  .tableColor{
+    color: white;
+  }
+  .permColor{
+    background-color: black;
   }
   .queueButton {
     margin-top: 20px;
