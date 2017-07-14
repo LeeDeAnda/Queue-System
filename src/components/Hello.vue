@@ -1,7 +1,9 @@
 <template>
+
   <div class="hello">
     <div class="student-input">
       <!-- this is a comment -->
+      <h1>CLAS Math Science Drop-In</h1>
       <h4>Sign in to get started</h4>
       <p>Enter your first name</p>
       <input type="text" placeholder="First Name" v-model="studentName" />
@@ -50,8 +52,8 @@
           <th>Reason</th>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="student in studentsInQueue">
+      <tbody class="zebra">
+        <tr v-for="student in studentsInQueue" class="zebra">
           <td>{{student.timestamp.format('h:mm:ss A')}}</td>
           <td>{{student.name}}</td>
           <td v-bind:class="{mathColor: student.subject =='Math', physicsColor: student.subject == 'Physics', pstatColor: student.subject == 'PStat', otherColor: student.subject == 'Other'}">{{student.course}}</td>
@@ -345,6 +347,7 @@ export default {
   }
   .tableColor{
     color: white;
+    background-color: white;
   }
   .permColor{
     background-color: black;
@@ -368,12 +371,15 @@ export default {
   .student-actions a {
     margin-right: 4px;
   }
+  .zebra tr:nth-of-type(even){
+    background-color: #ccc;
+  }
   table {
     width: 100%;
   }
-  tr :nth-of-type(even){
-    background-color: grey;
-  }
+  /*tr:nth-of-type(even){
+    background-color: #ccc;
+  }*/
   table th {
     text-align: left;
   }
