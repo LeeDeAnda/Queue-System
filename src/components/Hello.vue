@@ -371,7 +371,7 @@ export default {
   .student-actions a {
     margin-right: 4px;
   }
-  .zebra tr:nth-of-type(even){
+  .zebra tr:nth-of-type(odd){
     background-color: #ccc;
   }
   table {
