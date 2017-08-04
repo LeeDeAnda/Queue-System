@@ -56,7 +56,7 @@
         <tr v-for="student in studentsInQueue" class="zebra">
           <td>{{student.timestamp.format('h:mm:ss A')}}</td>
           <td>{{student.name}}</td>
-          <td v-bind:class="{mathColor: student.subject =='Math', physicsColor: student.subject == 'Physics', pstatColor: student.subject == 'PStat', otherColor: student.subject == 'Other'}">{{student.course}}</td>
+          <td v-bind:class="{mathColor: student.subject =='Math', physicsColor: student.subject == 'Physics', pstatColor: student.subject == 'PStat', eceColor: student.subject == 'ECE', astroColor: student.subject =='Astro', otherColor: student.subject == 'Other'}">{{student.course}}</td>
           <!--<td v-bind:class="{student.subject +'Color'}">{{student.course}}</td> -->
           <td>{{student.status}}</td>
           <td>
@@ -74,7 +74,7 @@
             <a href="#" @click.prevent="statusPriority(student)">Priority Course</a>
             <a href="#" @click.prevent="statusWaiting(student)">Waiting</a>
             <a href="#" @click.prevent="statusTutor(student)">Working with</a>
-          <a href="#" @click.prevent="statusStudying(student)">Studying</a>
+          <!--<a href="#" @click.prevent="statusStudying(student)">Studying</a>  -->
             <a href="#" @click.prevent="statusDone(student)">Done</a>
           </td>
           <td>{{student.reason}}</td>
@@ -143,12 +143,14 @@ export default {
       selectedReason: '',
       studentsInQueue: [],
       studentsCompleted: [],
-      subjects: ['Math', 'Physics', 'PStat', "Other"],
+      subjects: ['Math', 'Physics', 'PStat', "ECE", "Astro", "Other"],
       courses: {
         'Math': ['Math 3A', 'Math 3B', 'Math 4A', 'Math 4B', 'Math 6A', 'Math 6B', 'Math 34A', 'Math 34B'],
         'Physics': ['Physics 1', 'Physics 2', 'Physics 3', 'Physics 4', 'Physics 5', 'Physics 6A', 'Physics 6B', 'Physics 6C'],
         'PStat': ['PStat 5A', 'PStat 109'],
-        'Other': ['ECE 10A', 'ECE 10B', 'ECE 10C', 'Engr 3', 'Astro 1'],
+        'ECE': ['ECE 10A', 'ECE 10B', 'ECE 10C'],
+        'Astro': ['Astro 1'],
+        'Other':['Engr 3'],
       },
       reasons:['1 - Need help getting started.','2 - Started but got stuck.', '3 - Can do others but not this one.', '4 - I did problem already and just need someone to check my answer.', '5 - I want to learn concepts better, no specific question.', '6 - I want to review for a test.', '7 - I want to work with others in my class.', '8 - Other'],
       activeTutors: [
@@ -342,6 +344,12 @@ export default {
   .pstatColor{
     background-color: #FF3333;
   }
+  .eceColor{
+    background-color: #FFFF00;
+  }
+  .astroColor{
+    background-color: #FF00FF;
+  }
   .otherColor{
     background-color: #784AFF;
   }
@@ -376,6 +384,7 @@ export default {
   }
   table {
     width: 100%;
+    font-size: 18px;
   }
   /*tr:nth-of-type(even){
     background-color: #ccc;
