@@ -9,8 +9,9 @@
       <input type="text" placeholder="First Name" v-model="studentName" />
       <p>Enter your last name</p>
       <input type="text" placeholder="Last Name" v-model="studentLastName" />
-      <p>Enter your perm #</p>
-      <input type="text" placeholder="perm #" v-model="studentPerm" />
+      <!-- Use only if collecting Perm -->
+      <!-- <p>Enter your perm #</p>
+      <input type="text" placeholder="perm #" v-model="studentPerm" /> -->
       <p>Select Subject</p>
       <select v-model="selectedSubject">
         <option v-for="hilee in subjects">{{hilee}}</option>
@@ -49,7 +50,9 @@
           <th>Status</th>
           <th style="width: 20%">Tutor</th>
           <th>Action</th>
+          <!--
           <th>Reason</th>
+          -->
         </tr>
       </thead>
       <tbody class="zebra">
@@ -77,7 +80,9 @@
           <!--<a href="#" @click.prevent="statusStudying(student)">Studying</a>  -->
             <a href="#" @click.prevent="statusDone(student)">Done</a>
           </td>
+          <!--
           <td>{{student.reason}}</td>
+          -->
         </tr>
       </tbody>
     </table>
@@ -94,14 +99,18 @@
           <th>Perm</th>
           <th>Subject</th>
           <th>Course</th>
+
           <th>Reason</th>
+
           <th>Tutor</th>
           <th>Priority Course</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-if="studentPerm =='demo'" v-for="student in studentsCompleted">
+        <!-- Only use if Perm is collected -->
+        <!--  <tr v-if="studentPerm =='demo'" v-for="student in studentsCompleted">  -->
+        <tr v-if="studentLastName == 'demo'" v-for="student in studentsCompleted">
           <td>{{student.timestamp.format('MMM D,  h:mm A')}}</td>
           <td>{{student.endingTimestamp.format('h:mm:ss A')}}</td>
           <td>{{student.totalTime}} minutes</td>
@@ -110,7 +119,9 @@
           <td :class="{permColor: selectedSubject =='Other'}">{{student.perm}}</td>
           <td>{{student.subject}}</td>
           <td>{{student.course}}</td>
+
           <td>{{student.reason}}</td>
+
           <td>{{student.tutor}}</td>
           <td>
             <template v-if="student.priority">
@@ -159,7 +170,7 @@ export default {
           subjects: []
         },
         {
-          tutorName: 'Alex',
+          tutorName: 'Alex P',
           subjects: ['Math 3A', 'Math 34']
         },
         {
@@ -181,7 +192,28 @@ export default {
         {
           tutorName: 'Vince',
           subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Alex B',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'George',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Jared',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Ken',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Noah',
+          subjects: ['Math 3A']
         }
+
 
       ]
     }
@@ -244,11 +276,11 @@ export default {
       if(this.studentLastName.length <= 1) {
         return 'No last name entered'
       }
-      if(this.studentPerm.length !== 7) {
-        window.alert('Please entera valid perm!');
-        return 'Please enter a valid perm #'
-
-      }
+      //Use if Perm is being collected
+      //if(this.studentPerm.length !== 7) {
+      //  window.alert('Please entera valid perm!');
+      //  return 'Please enter a valid perm #'
+      //}
       if(this.selectedSubject <= 1) {
         return 'No subject selected'
       }
@@ -285,9 +317,13 @@ export default {
     statusDone(student) {
       student.status = 'done'
       // loop through students and find the matching object
-      var completedStudent = _.find(this.studentsInQueue, {perm: student.perm})
+      //Use if Perm is being collected
+      //var completedStudent = _.find(this.studentsInQueue, {perm: student.perm})
+      var completedStudent = _.find(this.studentsInQueue, {lastname: student.lastname})
       // remove them from studentsInQueue array
-      _.remove(this.studentsInQueue, {perm: completedStudent.perm})
+      //Use if Perm is being collected
+      // _.remove(this.studentsInQueue, {perm: completedStudent.perm})
+      _.remove(this.studentsInQueue, {lastname: completedStudent.lastname})
       // add additional ending timestamp and duration
       completedStudent.endingTimestamp = new moment()
       completedStudent.totalTime = completedStudent.endingTimestamp.diff(completedStudent.timestamp, 'minutes')
