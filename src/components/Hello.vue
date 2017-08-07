@@ -37,7 +37,7 @@
         </p>
       </div>
     </div>
-
+    <h1 class="tutorOnly">_________ Tutor use only below this line __________</h1>
     <h2>Students in queue:</h2>
     <table>
       <thead>
@@ -381,6 +381,9 @@ export default {
   }
   .zebra tr:nth-of-type(odd){
     background-color: #ccc;
+  }
+  .tutorOnly {
+    text-align: center;
   }
   table {
     width: 100%;
