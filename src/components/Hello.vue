@@ -38,7 +38,8 @@
         </p>
       </div>
     </div>
-    <h1 class="tutorOnly">_________ Tutor use only below this line __________</h1>
+    <h1 class="studentFinished">Students: please log out when you leave by selecting "Finished" under Student Action.</h1>
+
     <h2>Students in queue:</h2>
     <table>
       <thead>
@@ -46,10 +47,13 @@
           <th>Time Arrived</th>
           <th>Student Name</th>
           <!--  <th>Subject</th> -->
+          <th>Student Action</th>
           <th>Course</th>
           <th>Status</th>
           <th style="width: 20%">Tutor</th>
-          <th>Action</th>
+
+          <th>Tutor Actions: Tutor use only!</th>
+          <!--  <th>Priority Course</th>  -->
           <!--
           <th>Reason</th>
           -->
@@ -59,6 +63,7 @@
         <tr v-for="student in studentsInQueue" class="zebra">
           <td>{{student.timestamp.format('h:mm:ss A')}}</td>
           <td>{{student.name}}</td>
+          <td class="student-actions"><a href="#" @click.prevent="statusDone(student)">Finished</a></td>
           <td v-bind:class="{mathColor: student.subject =='Math', physicsColor: student.subject == 'Physics', pstatColor: student.subject == 'PStat', eceColor: student.subject == 'ECE', astroColor: student.subject =='Astro', otherColor: student.subject == 'Other'}">{{student.course}}</td>
           <!--<td v-bind:class="{student.subject +'Color'}">{{student.course}}</td> -->
           <td>{{student.status}}</td>
@@ -73,13 +78,17 @@
               {{student.tutor}}
             </template>
           </td> <!-- don't forget to always close your html tags: <td></td> -->
+
           <td class="student-actions">
             <a href="#" @click.prevent="statusPriority(student)">Priority Course</a>
             <a href="#" @click.prevent="statusWaiting(student)">Waiting</a>
             <a href="#" @click.prevent="statusTutor(student)">Working with</a>
           <!--<a href="#" @click.prevent="statusStudying(student)">Studying</a>  -->
-            <a href="#" @click.prevent="statusDone(student)">Done</a>
+          <!--  <a href="#" @click.prevent="statusDone(student)">Finished</a>  -->
           </td>
+          <!--  <td><template v-if="student.priority">
+            <a>Priority Course</a>
+          </template></td>  -->
           <!--
           <td>{{student.reason}}</td>
           -->
@@ -371,6 +380,9 @@ export default {
   * {
     box-sizing: border-box;
   }
+  .waitingColor{
+    background-color: green;
+  }
   .mathColor{
     background-color: #3399FF;
   }
@@ -418,9 +430,10 @@ export default {
   .zebra tr:nth-of-type(odd){
     background-color: #ccc;
   }
-  .tutorOnly {
+  .studentFinished{
     text-align: center;
   }
+
   table {
     width: 100%;
     font-size: 18px;
