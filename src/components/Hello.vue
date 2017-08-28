@@ -45,6 +45,7 @@
       <thead>
         <tr>
           <th>Time Arrived</th>
+          <th>Exit Time</th>
           <th>Student Name</th>
           <!--  <th>Subject</th> -->
           <th>Student Action</th>
@@ -62,8 +63,11 @@
       <tbody class="zebra">
         <tr v-for="student in studentsInQueue" class="zebra">
           <td>{{student.timestamp.format('h:mm:ss A')}}</td>
+          <!-- Tried using student.timestamp2 but caused fatal error-->
+          <td>{{student.timestamp.format('h:mm')}}</td>
           <td>{{student.name}}</td>
-          <td class="student-actions"><a href="#" @click.prevent="statusDone(student)">Finished</a></td>
+          <td class="student-actions"><a href="#" @click.prevent="statusEnd(student)">Finished</a></td>
+
           <td v-bind:class="{mathColor: student.subject =='Math', physicsColor: student.subject == 'Physics', pstatColor: student.subject == 'PStat', eceColor: student.subject == 'ECE', astroColor: student.subject =='Astro', otherColor: student.subject == 'Other'}">{{student.course}}</td>
           <!--<td v-bind:class="{student.subject +'Color'}">{{student.course}}</td> -->
           <td>{{student.status}}</td>
@@ -83,6 +87,8 @@
             <a href="#" @click.prevent="statusPriority(student)">Priority Course</a>
             <a href="#" @click.prevent="statusWaiting(student)">Waiting</a>
             <a href="#" @click.prevent="statusTutor(student)">Working with</a>
+            <!--  <a href="#" @click.prevent="statusDone(student)">Remove Student</a>  -->
+            <button @click="statusDone(student)" class="Button">Remove Student</button>
           <!--<a href="#" @click.prevent="statusStudying(student)">Studying</a>  -->
           <!--  <a href="#" @click.prevent="statusDone(student)">Finished</a>  -->
           </td>
@@ -262,6 +268,7 @@ export default {
         // so we can update the UI accordingly (show dropdown)
         editingTutor: false,
         timestamp: new moment(),
+        timestamp2: new moment(),
         status: 'Waiting',
         priority: ''
       }
@@ -323,6 +330,10 @@ export default {
     statusWaiting(student) {
       student.status = 'Waiting'
     },
+    statusEnd(student){
+        student.status = 'End'
+        student.timestamp2 = new moment()
+  },
     statusDone(student) {
       student.status = 'done'
       // loop through students and find the matching object
@@ -407,6 +418,10 @@ export default {
   }
   .permColor{
     background-color: black;
+  }
+  .Button{
+    width: 75px;
+    align-content: center;
   }
   .queueButton {
     margin-top: 20px;
