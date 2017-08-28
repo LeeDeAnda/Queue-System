@@ -64,7 +64,7 @@
         <tr v-for="student in studentsInQueue" class="zebra">
           <td>{{student.timestamp.format('h:mm:ss A')}}</td>
           <!-- Tried using student.timestamp2 but caused fatal error-->
-          <td>{{student.timestamp.format('h:mm')}}</td>
+          <td>{{student.timestamp2.format('h:mm')}}</td>
           <td>{{student.name}}</td>
           <td class="student-actions"><a href="#" @click.prevent="statusEnd(student)">Finished</a></td>
 
@@ -333,6 +333,10 @@ export default {
     statusEnd(student){
         student.status = 'End'
         student.timestamp2 = new moment()
+        
+        //var date = new moment().format('h:mm A')
+        //window.alert(date)
+
   },
     statusDone(student) {
       student.status = 'done'
@@ -358,6 +362,7 @@ export default {
         this.studentsInQueue = JSON.parse(window.localStorage.getItem('studentsInQueue'))
         _.forEach(this.studentsInQueue, (student) => {
           student.timestamp = new moment(student.timestamp)
+          student.timestamp2 = new moment(student.timestamp2)
         })
       } else {
         this.studentsInQueue = []
@@ -421,6 +426,7 @@ export default {
   }
   .Button{
     width: 75px;
+    background: yellow;
     align-content: center;
   }
   .queueButton {
