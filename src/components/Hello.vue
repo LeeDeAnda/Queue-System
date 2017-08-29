@@ -55,16 +55,17 @@
 
           <th>Tutor Actions: Tutor use only!</th>
           <!--  <th>Priority Course</th>  -->
-          <!--
-          <th>Reason</th>
-          -->
+          <!--  <th>Reason</th>  -->
         </tr>
       </thead>
       <tbody class="zebra">
         <tr v-for="student in studentsInQueue" class="zebra">
-          <td>{{student.timestamp.format('h:mm:ss A')}}</td>
-          <!-- Tried using student.timestamp2 but caused fatal error-->
-          <td>{{student.timestamp2.format('h:mm')}}</td>
+          <td>{{student.timestamp.format('h:mm A')}}</td>
+        <!--  <td>{{student.timestamp2.format('h:mm A')}}</td>  -->
+        <!--  if else for the exit time, both lines are needed -->
+          <td v-if="student.timeTotal>=1">{{student.timestamp2.format('h:mm A')}}</td>
+          <td v-else></td>
+          <!--  <td>{{student.timeTotal}}</td>  -->
           <td>{{student.name}}</td>
           <td class="student-actions"><a href="#" @click.prevent="statusEnd(student)">Finished</a></td>
 
@@ -331,13 +332,13 @@ export default {
       student.status = 'Waiting'
     },
     statusEnd(student){
-        student.status = 'End'
+        student.status = 'Gone'
         student.timestamp2 = new moment()
-        
+        student.timeTotal = student.timestamp2.diff(student.timestamp, 'minutes')
         //var date = new moment().format('h:mm A')
         //window.alert(date)
+      },
 
-  },
     statusDone(student) {
       student.status = 'done'
       // loop through students and find the matching object
