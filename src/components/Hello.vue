@@ -210,7 +210,47 @@ export default {
           subjects: ['Math 3A']
         },
         {
+          tutorName: 'Abigail',
+          subjects: ['Math 3A']
+        },
+        {
           tutorName: 'Alex B',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Avan',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Blake',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Bobby',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Christian',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Clara',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Claude',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Daniel',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Danielle',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Erica',
           subjects: ['Math 3A']
         },
         {
@@ -218,15 +258,91 @@ export default {
           subjects: ['Math 3A']
         },
         {
-          tutorName: 'Jared',
+          tutorName: 'Himangshu',
           subjects: ['Math 3A']
         },
         {
-          tutorName: 'Ken',
+          tutorName: 'Ian',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Isaac',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Jared P',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Jaret D',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Jason',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'JJ',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Jordan',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Jose',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Joyce',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Ken W',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Kenny L',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Michael',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Monica',
           subjects: ['Math 3A']
         },
         {
           tutorName: 'Noah',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Russell',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Sam A',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Sam O',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Shaun',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Talah',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Will',
+          subjects: ['Math 3A']
+        },
+        {
+          tutorName: 'Zheng',
           subjects: ['Math 3A']
         }
 
