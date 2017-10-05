@@ -67,8 +67,9 @@
           <td v-else></td>
           <!--  <td>{{student.timeTotal}}</td>  -->
           <td>{{student.name}}</td>
-          <td class="student-actions"><a href="#" @click.prevent="statusEnd(student)">Finished</a></td>
-
+          <td><button @click="statusEnd(student)" class="ButtonYellow">Sign out</button>
+        <!--  <td class="student-actions"><a href="#" @click.prevent="statusEnd(student)">Sign out</a></td>
+-->
           <td v-bind:class="{mathColor: student.subject =='Math', physicsColor: student.subject == 'Physics', pstatColor: student.subject == 'PStat', eceColor: student.subject == 'ECE', astroColor: student.subject =='Astro', otherColor: student.subject == 'Other'}">{{student.course}}</td>
           <!--<td v-bind:class="{student.subject +'Color'}">{{student.course}}</td> -->
           <td>{{student.status}}</td>
@@ -89,7 +90,7 @@
             <a href="#" @click.prevent="statusWaiting(student)">Waiting</a>
             <a href="#" @click.prevent="statusTutor(student)">Working with</a>
             <!--  <a href="#" @click.prevent="statusDone(student)">Remove Student</a>  -->
-            <button @click="statusDone(student)" class="Button">Remove Student</button>
+            <button @click="statusDone(student)" class="Button">Tutor Use Only!</button>
           <!--<a href="#" @click.prevent="statusStudying(student)">Studying</a>  -->
           <!--  <a href="#" @click.prevent="statusDone(student)">Finished</a>  -->
           </td>
@@ -250,7 +251,7 @@ export default {
           subjects: ['Math 3A']
         },
         {
-          tutorName: 'Erica',
+          tutorName: 'EriKa',
           subjects: ['Math 3A']
         },
         {
@@ -542,6 +543,11 @@ export default {
     background-color: black;
   }
   .Button{
+    width: 75px;
+    background: #ff3300;
+    align-content: center;
+  }
+  .ButtonYellow{
     width: 75px;
     background: yellow;
     align-content: center;
