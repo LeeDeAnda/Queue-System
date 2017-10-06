@@ -540,7 +540,7 @@ export default {
     background-color: white;
   }
   .permColor{
-    background-color: black;
+    background-color: white;
   }
   .Button{
     width: 100px;
