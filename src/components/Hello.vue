@@ -38,7 +38,7 @@
         </p>
       </div>
     </div>
-    <h1 class="studentFinished">Students: please log out when you leave by selecting "Finished" under Student Action.</h1>
+    <h1 class="studentFinished">Students: please log out when you leave by selecting "Sign out" under Student Action.</h1>
 
     <h2>Students in queue:</h2>
     <table>
@@ -543,7 +543,7 @@ export default {
     background-color: white;
   }
   .Button{
-    width: 100px;
+    width: 120px;
     background: #ff3300;
     align-content: center;
   }
