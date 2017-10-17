@@ -459,6 +459,7 @@ export default {
         student.timeTotal = student.timestamp2.diff(student.timestamp, 'minutes')
         student.contacts = student.timeTotal
         student.contacts /= 30
+        student.contacts += 1
         //var date = new moment().format('h:mm A')
         //window.alert(date)
       },
@@ -478,6 +479,7 @@ export default {
       completedStudent.totalTime = completedStudent.endingTimestamp.diff(completedStudent.timestamp, 'minutes')
       completedStudent.contacts = completedStudent.totalTime
       completedStudent.contacts /= 30
+      completedStudent.contacts += 1
 
       // add them to studentsCompleted array
       this.studentsCompleted.push(completedStudent)
