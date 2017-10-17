@@ -110,31 +110,33 @@
         <tr v-if="studentLastName =='demo'">
           <th>Time Arrived</th>
           <th>Time Ended</th>
-          <th>Duration</th>
+          <th>Duration (Min)</th>
+          <th>Contacts</th>
           <th>Student Name</th>
           <th>Last</th>
           <th>Perm</th>
-          <th>Subject</th>
+        <!--  <th>Subject</th>  -->
           <th>Course</th>
 
           <th>Reason</th>
 
           <th>Tutor</th>
           <th>Priority Course</th>
-          <th>Status</th>
+          <!--  <th>Status</th>  -->
         </tr>
       </thead>
       <tbody>
         <!-- Only use if Perm is collected -->
-        <tr v-if="studentPerm =='demo'" v-for="student in studentsCompleted">
-        <tr v-if="studentLastName == 'demo'" v-for="student in studentsCompleted">
-          <td>{{student.timestamp.format('MMM D,  h:mm A')}}</td>
-          <td>{{student.endingTimestamp.format('h:mm:ss A')}}</td>
-          <td>{{student.totalTime}} minutes</td>
+        <tr v-if="studentPerm =='Do not write code here'" v-for="student in studentsCompleted">
+        <!--<tr v-if="studentLastName == 'demo'" v-for="student in studentsCompleted">  -->
+          <td>{{student.timestamp.format('MMM D,  h:mm')}}</td>
+          <td>{{student.endingTimestamp.format('h:mm A')}}</td>
+          <td>{{student.totalTime}}</td>
+          <td>{{student.contacts}}</td>
           <td>{{student.name}}</td>
           <td>{{student.lastname}}</td>
           <td :class="{permColor: selectedSubject =='Other'}">{{student.perm}}</td>
-          <td>{{student.subject}}</td>
+          <!--  <td>{{student.subject}}</td>  -->
           <td>{{student.course}}</td>
 
           <td>{{student.reason}}</td>
@@ -146,7 +148,7 @@
             </template>
           </td>
           <!-- keep if string <td>{{student.priority}}</td>  -->
-          <td>{{student.status}}</td>
+          <!--  <td>{{student.status}}</td>  -->
         </tr>
       </tbody>
     </table>
@@ -387,6 +389,7 @@ export default {
         editingTutor: false,
         timestamp: new moment(),
         timestamp2: new moment(),
+
         status: 'Waiting',
         priority: ''
       }
@@ -399,6 +402,8 @@ export default {
       this.selectedCourse = ''
       this.selectedSubject = ''
       this.selectedReason =''
+
+
 
       this.saveDataToStorage()
     },
@@ -452,6 +457,8 @@ export default {
         student.status = 'Gone'
         student.timestamp2 = new moment()
         student.timeTotal = student.timestamp2.diff(student.timestamp, 'minutes')
+        student.contacts = student.timeTotal
+        student.contacts /= 30
         //var date = new moment().format('h:mm A')
         //window.alert(date)
       },
@@ -469,6 +476,9 @@ export default {
       // add additional ending timestamp and duration
       completedStudent.endingTimestamp = new moment()
       completedStudent.totalTime = completedStudent.endingTimestamp.diff(completedStudent.timestamp, 'minutes')
+      completedStudent.contacts = completedStudent.totalTime
+      completedStudent.contacts /= 30
+
       // add them to studentsCompleted array
       this.studentsCompleted.push(completedStudent)
       this.saveDataToStorage()
