@@ -456,10 +456,9 @@ export default {
     statusEnd(student){
         student.status = 'Gone'
         student.timestamp2 = new moment()
-        student.timeTotal = student.timestamp2.diff(student.timestamp, 'minutes')
-        student.contacts = student.timeTotal
-        student.contacts /= 30
-        student.contacts += 1
+        student.timeTotal = (student.timestamp2.diff(student.timestamp, 'minutes'))
+        // student.contacts = Math.ceil(student.timeTotal / 30)
+
         //var date = new moment().format('h:mm A')
         //window.alert(date)
       },
@@ -476,10 +475,9 @@ export default {
       //_.remove(this.studentsInQueue, {lastname: completedStudent.lastname})
       // add additional ending timestamp and duration
       completedStudent.endingTimestamp = new moment()
-      completedStudent.totalTime = completedStudent.endingTimestamp.diff(completedStudent.timestamp, 'minutes')
-      completedStudent.contacts = completedStudent.totalTime
-      completedStudent.contacts /= 30
-      completedStudent.contacts += 1
+      completedStudent.totalTime = (completedStudent.endingTimestamp.diff(completedStudent.timestamp, 'minutes'))
+      completedStudent.contacts = Math.ceil(completedStudent.totalTime / 30)
+
 
       // add them to studentsCompleted array
       this.studentsCompleted.push(completedStudent)
