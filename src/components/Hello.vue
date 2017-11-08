@@ -175,9 +175,9 @@ export default {
       studentsCompleted: [],
       subjects: ['Math', 'Physics', 'PStat', "ECE", "Astro", "Other"],
       courses: {
-        'Math': ['Math 3A', 'Math 3B', 'Math 4A', 'Math 4B', 'Math 6A', 'Math 6B', 'Math 34A', 'Math 34B'],
+        'Math': ['Math 2A', 'Math 3A', 'Math 3B', 'Math 4A', 'Math 4B', 'Math 6A', 'Math 6B', 'Math 34A', 'Math 34B'],
         'Physics': ['Physics 1', 'Physics 2', 'Physics 3', 'Physics 4', 'Physics 5', 'Physics 6A', 'Physics 6B', 'Physics 6C'],
-        'PStat': ['PStat 5A', 'PStat 109'],
+        'PStat': ['PStat 5A', 'PStat 5LS', 'PStat 109'],
         'ECE': ['ECE 10A', 'ECE 10B', 'ECE 10C'],
         'Astro': ['Astro 1'],
         'Other':['Engr 3'],
